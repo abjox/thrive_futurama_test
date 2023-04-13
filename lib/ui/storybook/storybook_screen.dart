@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
 
+import '../characters/characters_screen.dart';
+import '../character_details/character_details_screen.dart';
 import '../home/home_screen.dart';
 import 'mock_models.dart';
 
 enum Screen {
   home,
+  characters,
+  characterDetails,
 }
 
 enum HomeState { initial }
+
+enum CharctersState { initial }
+
+enum CharacterDetails { initial }
 
 class StorybookScreen extends StatelessWidget {
   const StorybookScreen({super.key});
@@ -16,6 +24,10 @@ class StorybookScreen extends StatelessWidget {
     switch (screen) {
       case Screen.home:
         return buildHomeState(context);
+      case Screen.characters:
+        return buildCharactersState(context);
+      case Screen.characterDetails:
+        return buildCharacterDetailsState(context);
       default:
         return [];
     }
@@ -33,6 +45,54 @@ class StorybookScreen extends StatelessWidget {
                     builder: (context) {
                       return HomeScreen(
                         mockInitialHomeStateViewModel,
+                        GlobalKey(),
+                      );
+                    },
+                  ),
+                );
+              }
+            },
+            child: Text(e.toString().split('.')[1]),
+          ));
+    }).toList();
+  }
+
+  List<Widget> buildCharactersState(BuildContext context) {
+    return CharctersState.values.map((e) {
+      return Padding(
+          padding: const EdgeInsets.only(bottom: 10.0),
+          child: TextButton(
+            onPressed: () {
+              if (e == CharctersState.initial) {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return CharactersScreen(
+                        mockInitialCharctersStateViewModel,
+                        GlobalKey(),
+                      );
+                    },
+                  ),
+                );
+              }
+            },
+            child: Text(e.toString().split('.')[1]),
+          ));
+    }).toList();
+  }
+
+  List<Widget> buildCharacterDetailsState(BuildContext context) {
+    return CharacterDetails.values.map((e) {
+      return Padding(
+          padding: const EdgeInsets.only(bottom: 10.0),
+          child: TextButton(
+            onPressed: () {
+              if (e == CharacterDetails.initial) {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return CharacterDetailsScreen(
+                        mockInitialCharcterDetailsStateViewModel,
                         GlobalKey(),
                       );
                     },
