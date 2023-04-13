@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../characters/characters_screen.dart';
 import '../character_details/character_details_screen.dart';
+import '../quiz/quiz_screen.dart';
 import '../home/home_screen.dart';
 import 'mock_models.dart';
 
@@ -9,13 +10,16 @@ enum Screen {
   home,
   characters,
   characterDetails,
+  quiz,
 }
 
 enum HomeState { initial }
 
 enum CharctersState { initial }
 
-enum CharacterDetails { initial }
+enum CharacterDetailsState { initial }
+
+enum QuizState { initial }
 
 class StorybookScreen extends StatelessWidget {
   const StorybookScreen({super.key});
@@ -28,6 +32,8 @@ class StorybookScreen extends StatelessWidget {
         return buildCharactersState(context);
       case Screen.characterDetails:
         return buildCharacterDetailsState(context);
+      case Screen.quiz:
+        return buildQuizState(context);
       default:
         return [];
     }
@@ -82,17 +88,41 @@ class StorybookScreen extends StatelessWidget {
   }
 
   List<Widget> buildCharacterDetailsState(BuildContext context) {
-    return CharacterDetails.values.map((e) {
+    return CharacterDetailsState.values.map((e) {
       return Padding(
           padding: const EdgeInsets.only(bottom: 10.0),
           child: TextButton(
             onPressed: () {
-              if (e == CharacterDetails.initial) {
+              if (e == CharacterDetailsState.initial) {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) {
                       return CharacterDetailsScreen(
                         mockInitialCharcterDetailsStateViewModel,
+                        GlobalKey(),
+                      );
+                    },
+                  ),
+                );
+              }
+            },
+            child: Text(e.toString().split('.')[1]),
+          ));
+    }).toList();
+  }
+
+  List<Widget> buildQuizState(BuildContext context) {
+    return QuizState.values.map((e) {
+      return Padding(
+          padding: const EdgeInsets.only(bottom: 10.0),
+          child: TextButton(
+            onPressed: () {
+              if (e == QuizState.initial) {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return QuizScreen(
+                        mockInitialQuizStateViewModel,
                         GlobalKey(),
                       );
                     },

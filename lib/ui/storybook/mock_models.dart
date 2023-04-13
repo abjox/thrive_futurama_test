@@ -1,7 +1,10 @@
 import 'package:thrive_futurama/redux/character_details/connector/character_details_view_model.dart';
 import 'package:thrive_futurama/redux/characters/connector/characters_view_model.dart';
 import 'package:thrive_futurama/redux/home/connector/home_view_model.dart';
+import 'package:thrive_futurama/redux/quiz/connector/quiz_view_model.dart';
 import 'package:thrive_futurama/ui/characters/components/character_tile_widget.dart';
+import 'package:thrive_futurama/ui/quiz/components/quiz_question_page_widget.dart';
+import 'package:thrive_futurama/ui/quiz/components/quiz_results_page_widget.dart';
 
 final mockInitialHomeStateViewModel = HomeViewModel(
   false,
@@ -62,4 +65,37 @@ final mockInitialCharcterDetailsStateViewModel = CharacterDetailsViewModel(
     "But this is HDTV. It's got better resolution than the real world.",
     "Can I pull up my pants now?",
   ],
+);
+
+final mockInitialQuizStateViewModel = QuizViewModel(
+  false,
+  false,
+  [
+    QuizQuestionPageProps(
+      "What is Fry's first name?",
+      ['Fred', 'Philip', 'Will', 'John'],
+      (p0) {},
+    ),
+    QuizQuestionPageProps(
+      "In 'Benders Big Score' what ailen species scam the earth?",
+      ['Nibbloniens', 'Omicrons', 'Robots', 'Nudest aliens', 'Tentacals'],
+      (p0) {},
+    )
+  ],
+  QuizResultsPageProps(
+    1,
+    [
+      QuestionResult(
+        true,
+        "What is Fry's first name?",
+        'Philip',
+      ),
+      QuestionResult(
+        false,
+        "In 'Benders Big Score' what ailen species scam the earth?",
+        'Omicrons',
+      ),
+    ],
+    () {},
+  ),
 );
