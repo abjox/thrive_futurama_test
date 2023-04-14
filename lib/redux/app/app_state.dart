@@ -2,8 +2,10 @@ import 'package:meta/meta.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../ui/common/bottom_navigation_bar_widget.dart';
+import '../character_details/character_details_state.dart';
 import '../characters/characters_state.dart';
 import '../home/home_state.dart';
+import '../quiz/quiz_state.dart';
 
 enum DataStatus {
   initial,
@@ -18,12 +20,16 @@ class AppState extends Equatable {
   final BottomBarItemTypes selectedItem;
   final HomeState homeState;
   final CharactersState charactersState;
+  final CharacterDetailsState characterDetailsState;
+  final QuizState quizState;
 
   const AppState({
     required this.dataStatus,
     required this.selectedItem,
     required this.homeState,
     required this.charactersState,
+    required this.characterDetailsState,
+    required this.quizState,
   });
 
   factory AppState.initial() {
@@ -32,6 +38,8 @@ class AppState extends Equatable {
       selectedItem: BottomBarItemTypes.home,
       homeState: HomeState.initial(),
       charactersState: CharactersState.initial(),
+      characterDetailsState: CharacterDetailsState.initial(),
+      quizState: QuizState.initial(),
     );
   }
 
@@ -40,12 +48,17 @@ class AppState extends Equatable {
     BottomBarItemTypes? selectedItem,
     HomeState? homeState,
     CharactersState? charactersState,
+    CharacterDetailsState? characterDetailsState,
+    QuizState? quizState,
   }) {
     return AppState(
       dataStatus: dataStatus ?? this.dataStatus,
       selectedItem: selectedItem ?? this.selectedItem,
       homeState: homeState ?? this.homeState,
       charactersState: charactersState ?? this.charactersState,
+      characterDetailsState:
+          characterDetailsState ?? this.characterDetailsState,
+      quizState: quizState ?? this.quizState,
     );
   }
 
@@ -55,5 +68,7 @@ class AppState extends Equatable {
         selectedItem,
         homeState,
         charactersState,
+        characterDetailsState,
+        quizState,
       ];
 }

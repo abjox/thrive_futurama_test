@@ -11,7 +11,7 @@ Character _$CharacterFromJson(Map<String, dynamic> json) => Character(
       json['age'] as String,
       json['gender'] as String,
       json['species'] as String,
-      json['homePlanet'] as String,
+      json['homePlanet'] as String?,
       json['occupation'] as String,
       Name.fromJson(json['name'] as Map<String, dynamic>),
       Images.fromJson(json['images'] as Map<String, dynamic>),
@@ -43,7 +43,7 @@ Map<String, dynamic> _$NameToJson(Name instance) => <String, dynamic>{
     };
 
 Images _$ImagesFromJson(Map<String, dynamic> json) => Images(
-      json['headShot'] as String,
+      json['headShot'] as String?,
       json['main'] as String,
     );
 

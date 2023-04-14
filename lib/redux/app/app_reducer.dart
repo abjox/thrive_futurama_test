@@ -1,8 +1,10 @@
 import 'package:redux/redux.dart';
 
 import '../../ui/common/bottom_navigation_bar_widget.dart';
+import '../character_details/character_details_reducer.dart';
 import '../characters/characters_reducer.dart';
 import '../home/home_reducer.dart';
+import '../quiz/quiz_reducer.dart';
 import 'app_actions.dart';
 import 'app_state.dart';
 
@@ -12,6 +14,9 @@ AppState appReducer(AppState state, dynamic action) {
     selectedItem: _bottomBarReducer(state.selectedItem, action),
     homeState: homeReducer(state.homeState, action),
     charactersState: charactersReducer(state.charactersState, action),
+    characterDetailsState:
+        characterDetailsReducer(state.characterDetailsState, action),
+    quizState: quizReducer(state.quizState, action),
   );
 }
 

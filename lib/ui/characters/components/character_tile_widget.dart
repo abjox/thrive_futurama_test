@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class CharacterProps {
@@ -20,7 +21,11 @@ class CharacterTileWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Image.network(props.image),
+      leading: CachedNetworkImage(
+        imageUrl: props.image,
+        placeholder: (context, url) => const CircularProgressIndicator(),
+        errorWidget: (context, url, error) => const Icon(Icons.error),
+      ),
       title: Text(props.firstName),
       subtitle: Text(props.lastName),
       onTap: props.onPressed,

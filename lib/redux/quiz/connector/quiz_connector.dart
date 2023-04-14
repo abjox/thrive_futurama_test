@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
-import 'package:thrive_futurama/redux/quiz/connector/quiz_view_model.dart';
-import 'package:thrive_futurama/ui/quiz/components/quiz_results_page_widget.dart';
-import 'package:thrive_futurama/ui/quiz/quiz_screen.dart';
 
 import '../../../ui/common/bottom_navigation_bar_widget.dart';
 import '../../../ui/home/components/home_body_widget.dart';
+import '../../../ui/quiz/components/quiz_results_page_widget.dart';
+import '../../../ui/quiz/quiz_screen.dart';
 import '../../app/app_actions.dart';
 import '../../app/app_state.dart';
+import 'quiz_view_model.dart';
 
 class QuizConnector extends StatelessWidget {
   final GlobalKey<ScaffoldState> _quizGlobalKey = GlobalKey();

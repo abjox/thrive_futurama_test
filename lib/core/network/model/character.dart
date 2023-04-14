@@ -8,7 +8,7 @@ class Character {
   final String age;
   final String gender;
   final String species;
-  final String homePlanet;
+  final String? homePlanet;
   final String occupation;
   final Name name;
   final Images images;
@@ -51,7 +51,7 @@ class Name {
 
 @JsonSerializable()
 class Images {
-  final String headShot;
+  final String? headShot;
   final String main;
 
   Images(

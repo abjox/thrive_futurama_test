@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 
+import '../redux/character_details/connector/character_details_connector.dart';
 import '../redux/characters/connector/characters_connector.dart';
 import '../redux/home/connector/home_connector.dart';
 import '../redux/quiz/connector/quiz_connector.dart';
@@ -11,6 +12,7 @@ final navigatorKey = GlobalKey<NavigatorState>();
 enum AppRoutes {
   home('/home'),
   characters('/characters'),
+  characterDetails('/characterDetails'),
   quiz('/quiz'),
   storybook('/storybook');
 
@@ -50,6 +52,11 @@ class AppRouter {
           pageBuilder: (context, state) {
             return NoTransitionPage(child: CharactersConnector());
           },
+        ),
+        GoRoute(
+          path: AppRoutes.characterDetails.path,
+          name: AppRoutes.characterDetails.name,
+          builder: (context, state) => CharacterDetailsConnector(),
         ),
         GoRoute(
           path: AppRoutes.quiz.path,

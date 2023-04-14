@@ -1,10 +1,10 @@
-import 'package:thrive_futurama/ui/common/bottom_navigation_bar_widget.dart';
-
 import '../../redux/character_details/connector/character_details_view_model.dart';
 import '../../redux/characters/connector/characters_view_model.dart';
 import '../../redux/home/connector/home_view_model.dart';
 import '../../redux/quiz/connector/quiz_view_model.dart';
+import '../character_details/components/character_details_body_widget.dart';
 import '../characters/components/character_tile_widget.dart';
+import '../common/bottom_navigation_bar_widget.dart';
 import '../home/components/home_body_widget.dart';
 import '../quiz/components/quiz_question_page_widget.dart';
 import '../quiz/components/quiz_results_page_widget.dart';
@@ -48,35 +48,37 @@ final mockInitialCharctersStateViewModel = CharactersViewModel(
 );
 
 final mockInitialCharcterDetailsStateViewModel = CharacterDetailsViewModel(
-  false,
-  false,
-  "https://upload.wikimedia.org/wikipedia/en/2/28/Philip_Fry.png",
-  'Philip',
-  '',
-  'Fry',
-  'Intergalactic Delivery Boy',
-  'Male',
-  'Human',
-  'Earth',
-  [
-    "Shut up and take my money!",
-    "I'm walking on sunshine, woah oh oooh",
-    "This is how we do it. Pick your nose and chew it",
-    "wow! I never would have thought of that.",
-    "Bigfoot! He's real! I knew it! The Loch Ness Monster's book was right!",
-    "I didn't ask for a completely reasonable excuse! I asked you to get busy!",
-    "It's like a party in my mouth and everybody's throwing up!",
-    "My God, it's full of ads!",
-    "There's so many killbots behind us, I can't count them all. Three, I think.",
-    "They're like sex, except I'm having them!",
-    "We're in the middle of nowhere, which is the safest part of nowhere.",
-    "When will young people learn that playing 'Dungeons and Dragons' doesn't make you cool!",
-    "Why am I sticky and naked? Did I miss something fun?",
-    "Wow! A superpowers drug you can just rub onto your skin? You'd think it would be something you'd have to freebase.",
-    "Wow, you got that off the Internet? In my day, the Internet was only used to download pornography.",
-    "But this is HDTV. It's got better resolution than the real world.",
-    "Can I pull up my pants now?",
-  ],
+  isLoading: false,
+  firstName: 'Philip',
+  characterDetailsBodyProps: CharacterDetailsBodyProps(
+    "https://upload.wikimedia.org/wikipedia/en/2/28/Philip_Fry.png",
+    'Philip',
+    '',
+    'Fry',
+    'Intergalactic Delivery Boy',
+    'Male',
+    'Human',
+    'Earth',
+    [
+      "Shut up and take my money!",
+      "I'm walking on sunshine, woah oh oooh",
+      "This is how we do it. Pick your nose and chew it",
+      "wow! I never would have thought of that.",
+      "Bigfoot! He's real! I knew it! The Loch Ness Monster's book was right!",
+      "I didn't ask for a completely reasonable excuse! I asked you to get busy!",
+      "It's like a party in my mouth and everybody's throwing up!",
+      "My God, it's full of ads!",
+      "There's so many killbots behind us, I can't count them all. Three, I think.",
+      "They're like sex, except I'm having them!",
+      "We're in the middle of nowhere, which is the safest part of nowhere.",
+      "When will young people learn that playing 'Dungeons and Dragons' doesn't make you cool!",
+      "Why am I sticky and naked? Did I miss something fun?",
+      "Wow! A superpowers drug you can just rub onto your skin? You'd think it would be something you'd have to freebase.",
+      "Wow, you got that off the Internet? In my day, the Internet was only used to download pornography.",
+      "But this is HDTV. It's got better resolution than the real world.",
+      "Can I pull up my pants now?",
+    ],
+  ),
 );
 
 final mockInitialQuizStateViewModel = QuizViewModel(

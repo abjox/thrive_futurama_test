@@ -11,7 +11,7 @@ class NavigationMiddleware extends MiddlewareClass<AppState> {
     next(action);
 
     if (action is NavigatePushAction) {
-      navigatorKey.currentContext?.go(action.route.path);
+      navigatorKey.currentContext?.push(action.route.path);
     }
 
     if (action is NavigatePopAction) {

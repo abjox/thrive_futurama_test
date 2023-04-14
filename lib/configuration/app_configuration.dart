@@ -62,7 +62,7 @@ class AppConfiguration {
         runApp(_instantiateReduxApp());
       },
       (error, trace) {
-        GetIt.I<Logger>().e('Root error occured', error, trace);
+        GetIt.I<Logger>().e('Root error occured:', error, trace);
       },
     );
   }

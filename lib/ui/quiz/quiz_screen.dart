@@ -63,11 +63,8 @@ class QuizScreen extends StatelessWidget {
             );
           },
         ),
-        bottomNavigationBar: Hero(
-          tag: 'bottomNavigationBar',
-          child: BottomNavigationBarWidget(
-            viewModel.bottomNavigationBarProps,
-          ),
+        bottomNavigationBar: BottomNavigationBarWidget(
+          viewModel.bottomNavigationBarProps,
         ),
       ),
     );

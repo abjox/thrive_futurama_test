@@ -1,28 +1,14 @@
+import '../../../ui/character_details/components/character_details_body_widget.dart';
+
 class CharacterDetailsViewModel {
   final bool isLoading;
-  final bool isError;
 
-  final String image;
   final String firstName;
-  final String middleName;
-  final String lastName;
-  final String occupation;
-  final String gender;
-  final String species;
-  final String homePlanet;
-  final List<String> sayings;
+  final CharacterDetailsBodyProps characterDetailsBodyProps;
 
-  CharacterDetailsViewModel(
-    this.isLoading,
-    this.isError,
-    this.image,
-    this.firstName,
-    this.middleName,
-    this.lastName,
-    this.occupation,
-    this.gender,
-    this.species,
-    this.homePlanet,
-    this.sayings,
-  );
+  CharacterDetailsViewModel({
+    required this.isLoading,
+    required this.firstName,
+    required this.characterDetailsBodyProps,
+  });
 }

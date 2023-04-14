@@ -35,8 +35,15 @@ class CharactersConnector extends StatelessWidget {
   }
 
   List<CharacterProps> _mapToCharacterProps(Store<AppState> store) {
-    final infoModel = store.state.homeState.info;
-    return [];
+    final characters = store.state.charactersState.characters;
+    return characters.map((e) {
+      return CharacterProps(
+        e.name.first,
+        e.name.last,
+        e.images.main,
+        () => store.dispatch(CharactersOpenDetailsAction(e)),
+      );
+    }).toList();
   }
 
   BottomNavigationBarProps _mapToBarProps(Store<AppState> store) {

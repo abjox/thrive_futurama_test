@@ -29,6 +29,7 @@ dependencies:
 
   # UI
   responsive_builder: ^0.6.4
+  cached_network_image: ^3.2.3
 
   # Utils
   json_annotation: ^4.8.0
