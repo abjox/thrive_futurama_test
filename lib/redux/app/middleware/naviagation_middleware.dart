@@ -11,7 +11,7 @@ class NavigationMiddleware extends MiddlewareClass<AppState> {
     next(action);
 
     if (action is NavigatePushAction) {
-      navigatorKey.currentContext?.go(action.routeName);
+      navigatorKey.currentContext?.go(action.route.path);
     }
 
     if (action is NavigatePopAction) {
@@ -19,7 +19,7 @@ class NavigationMiddleware extends MiddlewareClass<AppState> {
     }
 
     if (action is NavigateReplaceAction) {
-      navigatorKey.currentContext?.pushReplacementNamed(action.routeName);
+      navigatorKey.currentContext?.pushReplacementNamed(action.route.name);
     }
   }
 }

@@ -1,14 +1,15 @@
-import 'package:thrive_futurama/ui/characters/components/character_tile_widget.dart';
+import '../../../ui/characters/components/character_tile_widget.dart';
+import '../../../ui/common/bottom_navigation_bar_widget.dart';
 
 class CharactersViewModel {
   final bool isLoading;
-  final bool isError;
 
   final List<CharacterProps> characters;
+  final BottomNavigationBarProps bottomNavigationBarProps;
 
-  CharactersViewModel(
-    this.isLoading,
-    this.isError,
-    this.characters,
-  );
+  CharactersViewModel({
+    required this.isLoading,
+    required this.characters,
+    required this.bottomNavigationBarProps,
+  });
 }

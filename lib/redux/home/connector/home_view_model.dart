@@ -1,23 +1,15 @@
-import 'package:flutter/material.dart';
+import '../../../ui/common/bottom_navigation_bar_widget.dart';
+import '../../../ui/home/components/home_body_widget.dart';
 
 class HomeViewModel {
   final bool isLoading;
-  final bool isError;
 
-  final String synopsis;
-  final String yearsAired;
-  final List<String> creators;
+  final HomeBodyProps homeBodyProps;
+  final BottomNavigationBarProps bottomNavigationBarProps;
 
-  final VoidCallback onCharacters;
-  final VoidCallback onQuiz;
-
-  HomeViewModel(
-    this.isLoading,
-    this.isError,
-    this.synopsis,
-    this.yearsAired,
-    this.creators,
-    this.onCharacters,
-    this.onQuiz,
-  );
+  HomeViewModel({
+    required this.isLoading,
+    required this.homeBodyProps,
+    required this.bottomNavigationBarProps,
+  });
 }

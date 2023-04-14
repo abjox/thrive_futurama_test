@@ -27,13 +27,11 @@ class EnvironmentApp extends InheritedWidget {
 class ThriveFuturamaApp extends StatelessWidget {
   final AppEnvironment environment;
   final Store<AppState> store;
-  final Widget home;
 
   const ThriveFuturamaApp({
     Key? key,
     required this.environment,
     required this.store,
-    required this.home,
   }) : super(key: key);
 
   @override

@@ -1,9 +1,11 @@
 import 'dart:async';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get_it/get_it.dart';
 import 'package:logger/logger.dart';
 
+import '../core/network/network_service.dart';
 import '../redux/store.dart';
 import 'thrive_futurama_app.dart';
 
@@ -35,18 +37,19 @@ class AppConfiguration {
       level: logsEnabled ? Level.verbose : Level.nothing,
     ));
 
+    locator.registerLazySingleton<NetworkServiceProtocol>(() {
+      final dio = Dio(); // Provide a dio instance
+      final client = NetworkServiceProtocol(dio, baseUrl: backendURL);
+      return client;
+    });
+
     return locator.allReady();
   }
 
-  Widget _instantiateHomeWidget() {
-    return Container();
-  }
-
-  Widget _instantiateReduxApp(Widget home) {
+  Widget _instantiateReduxApp() {
     return ThriveFuturamaApp(
       environment: environment,
       store: createStore(),
-      home: home,
     );
   }
 
@@ -54,11 +57,9 @@ class AppConfiguration {
     WidgetsFlutterBinding.ensureInitialized();
     await _initializeDependencies();
 
-    final home = _instantiateHomeWidget();
-
     runZonedGuarded(
       () {
-        runApp(_instantiateReduxApp(home));
+        runApp(_instantiateReduxApp());
       },
       (error, trace) {
         GetIt.I<Logger>().e('Root error occured', error, trace);

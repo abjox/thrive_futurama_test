@@ -1,3 +1,6 @@
+import 'package:thrive_futurama/core/app_router.dart';
+import 'package:thrive_futurama/ui/common/bottom_navigation_bar_widget.dart';
+
 import 'app_state.dart';
 
 class StartApplicationAction {}
@@ -14,12 +17,12 @@ class ChangeDataStatusAction {
 // Navigation
 
 class NavigatePushAction {
-  final String routeName;
+  final AppRoutes route;
 
-  NavigatePushAction(this.routeName);
+  NavigatePushAction(this.route);
 
   @override
-  String toString() => 'Route: $routeName';
+  String toString() => 'Route: ${route.path}';
 }
 
 class NavigatePopAction {
@@ -28,12 +31,30 @@ class NavigatePopAction {
 }
 
 class NavigateReplaceAction {
-  final String routeName;
+  final AppRoutes route;
 
-  NavigateReplaceAction(this.routeName);
+  NavigateReplaceAction(this.route);
 
   @override
-  String toString() => 'Route: $routeName';
+  String toString() => 'Route: ${route.path}';
+}
+
+class BottomBarNavigateAction implements NavigateReplaceAction {
+  final BottomBarItemTypes item;
+
+  BottomBarNavigateAction(this.item);
+
+  @override
+  AppRoutes get route {
+    switch (item) {
+      case BottomBarItemTypes.home:
+        return AppRoutes.home;
+      case BottomBarItemTypes.characters:
+        return AppRoutes.characters;
+      case BottomBarItemTypes.quiz:
+        return AppRoutes.quiz;
+    }
+  }
 }
 
 // Error

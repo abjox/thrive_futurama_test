@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../redux/characters/connector/characters_view_model.dart';
+import '../common/bottom_navigation_bar_widget.dart';
 import 'components/character_tile_widget.dart';
 
 class CharactersScreen extends StatelessWidget {
@@ -28,35 +29,8 @@ class CharactersScreen extends StatelessWidget {
           );
         },
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.people),
-            label: 'Characters',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.quiz),
-            label: 'Quiz',
-          ),
-        ],
-        currentIndex: 1,
-        onTap: (index) {
-          switch (index) {
-            case 0:
-              // TODO: Implement characters screen.
-              break;
-            case 1:
-              // TODO: Implement quiz screen.
-              break;
-            case 2:
-              // TODO: Implement quiz screen.
-              break;
-          }
-        },
+      bottomNavigationBar: BottomNavigationBarWidget(
+        viewModel.bottomNavigationBarProps,
       ),
     );
   }

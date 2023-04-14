@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:thrive_futurama/redux/quiz/connector/quiz_view_model.dart';
 
+import '../../redux/quiz/connector/quiz_view_model.dart';
+import '../common/bottom_navigation_bar_widget.dart';
 import 'components/quiz_question_page_widget.dart';
 import 'components/quiz_results_page_widget.dart';
 
@@ -61,6 +62,12 @@ class QuizScreen extends StatelessWidget {
               props: props,
             );
           },
+        ),
+        bottomNavigationBar: Hero(
+          tag: 'bottomNavigationBar',
+          child: BottomNavigationBarWidget(
+            viewModel.bottomNavigationBarProps,
+          ),
         ),
       ),
     );
