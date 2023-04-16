@@ -3,7 +3,7 @@ import 'configuration/app_configuration.dart';
 void main() async {
   await AppConfiguration(
     environment: AppEnvironment.production,
-    backendURL: '',
+    backendURL: 'https://api.sampleapis.com/futurama',
     logsEnabled: false,
   ).run();
 }

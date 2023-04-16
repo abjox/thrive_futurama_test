@@ -3,6 +3,7 @@ import 'package:logger/logger.dart';
 import 'package:redux/redux.dart';
 
 import '../core/network/network_service.dart';
+import '../core/services/connectivity_service.dart';
 import 'app/app_reducer.dart';
 import 'app/app_state.dart';
 import 'app/middleware/logging_middleware.dart';
@@ -17,7 +18,11 @@ Store<AppState> createStore() {
     middleware: [
       NavigationMiddleware(),
       LoggingMiddleware(GetIt.I<Logger>()),
-      NetworkMiddleware(GetIt.I<NetworkServiceProtocol>(), GetIt.I<Logger>())
+      NetworkMiddleware(
+        GetIt.I<NetworkServiceProtocol>(),
+        GetIt.I<ConnectivityServiceProtocol>(),
+        GetIt.I<Logger>(),
+      )
     ],
   );
 }

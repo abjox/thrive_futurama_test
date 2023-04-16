@@ -1,8 +1,8 @@
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:logger/logger.dart';
 import 'package:redux/redux.dart';
 
 import '../../../core/network/network_service.dart';
+import '../../../core/services/connectivity_service.dart';
 import '../../characters/characters_actions.dart';
 import '../../home/home_actions.dart';
 import '../../quiz/quiz_actions.dart';
@@ -11,17 +11,23 @@ import '../app_state.dart';
 
 class NetworkMiddleware extends MiddlewareClass<AppState> {
   late NetworkServiceProtocol _networkService;
+  late ConnectivityServiceProtocol _connectivityService;
   late Logger _logger;
 
-  NetworkMiddleware(NetworkServiceProtocol networkService, Logger logger) {
+  NetworkMiddleware(
+    NetworkServiceProtocol networkService,
+    ConnectivityServiceProtocol connectivityService,
+    Logger logger,
+  ) {
     _networkService = networkService;
+    _connectivityService = connectivityService;
     _logger = logger;
   }
 
   @override
-  void call(Store<AppState> store, action, next) async {
+  Future<void> call(Store<AppState> store, action, next) async {
     next(action);
-    final available = await _isNetworkAvailable();
+    final available = await _connectivityService.hasNetworokConnection();
     if (!available) {
       store.dispatch(ErrorOccurredAction('No internet connection!'));
       return;
@@ -75,10 +81,5 @@ class NetworkMiddleware extends MiddlewareClass<AppState> {
       default:
         break;
     }
-  }
-
-  Future<bool> _isNetworkAvailable() async {
-    final result = await Connectivity().checkConnectivity();
-    return result != ConnectivityResult.none;
   }
 }

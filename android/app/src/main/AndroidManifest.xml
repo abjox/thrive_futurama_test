@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.thrive.futurama.thrive_futurama">
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
         android:label="thrive_futurama"
         android:name="${applicationName}"

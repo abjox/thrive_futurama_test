@@ -44,8 +44,8 @@ class QuizProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Question? qestionFor(int index) {
-    if (index < _questions.length) {
+  Question? questionFor(int index) {
+    if (index < _questions.length && index >= 0) {
       return _questions[index];
     }
 
@@ -53,7 +53,7 @@ class QuizProvider with ChangeNotifier {
   }
 
   String? answerFor(int index) {
-    if (index < _userAnswers.length) {
+    if (index < _userAnswers.length && index >= 0) {
       return _userAnswers[index];
     }
 
@@ -63,6 +63,7 @@ class QuizProvider with ChangeNotifier {
   bool isCorrectAnswerFor(Question? question) {
     if (question == null) return false;
     final questionIndex = _questions.indexOf(question);
+    if (questionIndex < 0) return false;
     final userAnswer = _userAnswers[questionIndex];
 
     return question.correctAnswer == userAnswer;

@@ -41,7 +41,7 @@ class QuizResultsScreen extends StatelessWidget {
                   child: ListView.builder(
                     itemCount: provider.numberOfQuestions,
                     itemBuilder: (context, index) {
-                      final question = provider.qestionFor(index);
+                      final question = provider.questionFor(index);
                       return ListTile(
                         title: Text(
                           question?.question ?? '',

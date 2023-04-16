@@ -1,11 +1,14 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get_it/get_it.dart';
 import 'package:logger/logger.dart';
+import 'package:thrive_futurama/core/network/futurama_http_overrides.dart';
 
 import '../core/network/network_service.dart';
+import '../core/services/connectivity_service.dart';
 import '../redux/store.dart';
 import 'thrive_futurama_app.dart';
 
@@ -39,9 +42,14 @@ class AppConfiguration {
 
     locator.registerLazySingleton<NetworkServiceProtocol>(() {
       final dio = Dio(); // Provide a dio instance
+      HttpOverrides.global = FuturamaHttpOverrides();
       final client = NetworkServiceProtocol(dio, baseUrl: backendURL);
       return client;
     });
+
+    locator.registerSingleton<ConnectivityServiceProtocol>(
+      ConnectivityService(),
+    );
 
     return locator.allReady();
   }

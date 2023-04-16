@@ -60,7 +60,7 @@ class _QuizBodyWidgetState extends State<QuizBodyWidget> {
                 controller: _pageController,
                 itemCount: provider.numberOfQuestions,
                 itemBuilder: (context, index) {
-                  final question = provider.qestionFor(index);
+                  final question = provider.questionFor(index);
                   if (question == null) {
                     return ErrorWidget.withDetails(
                       message: 'There no question for index: $index',
