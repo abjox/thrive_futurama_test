@@ -29,8 +29,12 @@ class CharacterTileWidget extends StatelessWidget {
         ),
       ),
       title: Semantics(
-        label: '${props.lastName} ${props.lastName}',
-        child: Text('${props.lastName} ${props.lastName}'),
+        label: props.firstName,
+        child: Text(props.firstName),
+      ),
+      subtitle: Semantics(
+        label: props.lastName,
+        child: Text(props.lastName),
       ),
       onTap: props.onPressed,
     );
