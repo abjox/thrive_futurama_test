@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:provider/provider.dart';
 import 'package:redux/redux.dart';
 
+import '../../../providers/quiz_provider.dart';
 import '../../../ui/common/bottom_navigation_bar_widget.dart';
-import '../../../ui/home/components/home_body_widget.dart';
-import '../../../ui/quiz/components/quiz_results_page_widget.dart';
 import '../../../ui/quiz/quiz_screen.dart';
 import '../../app/app_actions.dart';
 import '../../app/app_state.dart';
+import '../quiz_actions.dart';
 import 'quiz_view_model.dart';
 
 class QuizConnector extends StatelessWidget {
@@ -19,29 +20,23 @@ class QuizConnector extends StatelessWidget {
   Widget build(BuildContext context) {
     return StoreConnector<AppState, QuizViewModel>(
       distinct: true,
-      // onInit: (store) => store.dispatch(HomePrepareDataAction()),
+      onInit: (store) => store.dispatch(QuizPrepareDataAction()),
       converter: (store) {
+        Provider.of<QuizProvider>(context, listen: false).setup(
+          store.state.quizState.questions,
+        );
         return QuizViewModel(
           isLoading: store.state.dataStatus == DataStatus.inProgress,
-          // homeBodyProps: _mapToHomeBodyProps(store),
-          questionsProps: [],
-          quizResultsProps: QuizResultsPageProps(0, [], () {}),
+          errorMessage: store.state.errorMessage,
+          onReset: () => store.dispatch(QuizPrepareDataAction()),
           bottomNavigationBarProps: _mapToBarProps(store),
+          onQuizResults: () => store.dispatch(QuizOpenResultsAction()),
         );
       },
       builder: (context, viewModel) => QuizScreen(
         viewModel,
         _quizGlobalKey,
       ),
-    );
-  }
-
-  HomeBodyProps _mapToHomeBodyProps(Store<AppState> store) {
-    final infoModel = store.state.homeState.info;
-    return HomeBodyProps(
-      infoModel?.synopsis ?? '',
-      infoModel?.yearsAired ?? '',
-      infoModel?.creators.map((e) => e.name).toList() ?? [],
     );
   }
 

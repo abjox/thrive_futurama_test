@@ -53,10 +53,9 @@ class AppConfiguration {
     );
   }
 
-  Future run() async {
+  Future<void> run() async {
     WidgetsFlutterBinding.ensureInitialized();
     await _initializeDependencies();
-
     runZonedGuarded(
       () {
         runApp(_instantiateReduxApp());

@@ -11,6 +11,7 @@ import 'app_state.dart';
 AppState appReducer(AppState state, dynamic action) {
   return AppState(
     dataStatus: _dataStatusReducer(state.dataStatus, action),
+    errorMessage: _errorMessageReducer(state.errorMessage, action),
     selectedItem: _bottomBarReducer(state.selectedItem, action),
     homeState: homeReducer(state.homeState, action),
     charactersState: charactersReducer(state.charactersState, action),
@@ -22,7 +23,11 @@ AppState appReducer(AppState state, dynamic action) {
 
 final _dataStatusReducer = combineReducers<DataStatus>([
   TypedReducer(_changeDataStatusAction),
-  TypedReducer(_dismissErrorAction),
+]);
+
+final _errorMessageReducer = combineReducers<String?>([
+  TypedReducer(_errorOccuredAction),
+  TypedReducer(_clearErrorAction),
 ]);
 
 final _bottomBarReducer = combineReducers<BottomBarItemTypes>([
@@ -36,11 +41,18 @@ DataStatus _changeDataStatusAction(
   return action.dataStatus;
 }
 
-DataStatus _dismissErrorAction(
-  DataStatus dataStatus,
-  DismissErrorAction action,
+String? _errorOccuredAction(
+  String? errorMessage,
+  ErrorOccurredAction action,
 ) {
-  return DataStatus.success;
+  return action.message;
+}
+
+String? _clearErrorAction(
+  String? errorMessage,
+  ClearErrorAction action,
+) {
+  return null;
 }
 
 BottomBarItemTypes _bottomBarNavigateAction(

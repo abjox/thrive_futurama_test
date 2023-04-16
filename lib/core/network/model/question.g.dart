@@ -12,7 +12,7 @@ Question _$QuestionFromJson(Map<String, dynamic> json) => Question(
       possibleAnswers: (json['possibleAnswers'] as List<dynamic>)
           .map((e) => e as String)
           .toList(),
-      correctAnswer: json['correctAnswer'] as String,
+      correctAnswer: valueToString(json['correctAnswer']),
     );
 
 Map<String, dynamic> _$QuestionToJson(Question instance) => <String, dynamic>{

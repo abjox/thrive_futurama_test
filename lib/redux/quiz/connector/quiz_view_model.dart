@@ -1,19 +1,21 @@
+import 'package:flutter/material.dart';
+
 import '../../../ui/common/bottom_navigation_bar_widget.dart';
-import '../../../ui/quiz/components/quiz_question_page_widget.dart';
-import '../../../ui/quiz/components/quiz_results_page_widget.dart';
 
 class QuizViewModel {
   final bool isLoading;
+  final String? errorMessage;
+  final VoidCallback onReset;
 
-  final List<QuizQuestionPageProps> questionsProps;
-  final QuizResultsPageProps quizResultsProps;
+  final VoidCallback onQuizResults;
 
   final BottomNavigationBarProps bottomNavigationBarProps;
 
   QuizViewModel({
     required this.isLoading,
-    required this.questionsProps,
-    required this.quizResultsProps,
+    required this.errorMessage,
+    required this.onReset,
+    required this.onQuizResults,
     required this.bottomNavigationBarProps,
   });
 }

@@ -5,6 +5,7 @@ import '../redux/character_details/connector/character_details_connector.dart';
 import '../redux/characters/connector/characters_connector.dart';
 import '../redux/home/connector/home_connector.dart';
 import '../redux/quiz/connector/quiz_connector.dart';
+import '../redux/quiz_results/connector/quiz_results_connector.dart';
 import '../ui/storybook/storybook_screen.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
@@ -14,6 +15,7 @@ enum AppRoutes {
   characters('/characters'),
   characterDetails('/characterDetails'),
   quiz('/quiz'),
+  quizResults('/quizResults'),
   storybook('/storybook');
 
   final String path;
@@ -64,6 +66,11 @@ class AppRouter {
           pageBuilder: (context, state) {
             return NoTransitionPage(child: QuizConnector());
           },
+        ),
+        GoRoute(
+          path: AppRoutes.quizResults.path,
+          name: AppRoutes.quizResults.name,
+          builder: (context, state) => QuizResultsConnector(),
         ),
       ],
     );

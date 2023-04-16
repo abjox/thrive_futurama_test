@@ -23,6 +23,8 @@ class HomeConnector extends StatelessWidget {
       converter: (store) {
         return HomeViewModel(
           isLoading: store.state.dataStatus == DataStatus.inProgress,
+          errorMessage: store.state.errorMessage,
+          onReset: () => store.dispatch(HomePrepareDataAction()),
           homeBodyProps: _mapToHomeBodyProps(store),
           bottomNavigationBarProps: _mapToBarProps(store),
         );

@@ -59,14 +59,16 @@ class BottomBarNavigateAction implements NavigateReplaceAction {
 
 // Error
 
-class ErrorOccurredAction {
+class ErrorOccurredAction implements ChangeDataStatusAction {
+  final String message;
+
+  ErrorOccurredAction(this.message);
+
   @override
-  String toString() =>
-      throw UnsupportedError('Should be overridden in subclass');
+  DataStatus get dataStatus => DataStatus.error;
 }
 
-class DismissErrorAction {
+class ClearErrorAction implements ChangeDataStatusAction {
   @override
-  String toString() =>
-      throw UnsupportedError('Should be overridden in subclass');
+  DataStatus get dataStatus => DataStatus.success;
 }

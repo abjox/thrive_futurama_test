@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:provider/provider.dart';
 import 'package:redux/redux.dart';
 
 import '../core/app_router.dart';
+import '../providers/quiz_provider.dart';
 import '../redux/app/app_state.dart';
 import '../utils/theme.dart';
 import 'app_configuration.dart';
@@ -38,14 +40,21 @@ class ThriveFuturamaApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return EnvironmentApp(
       environment: environment,
-      child: StoreProvider(
-        store: store,
-        child: MaterialApp.router(
-          debugShowCheckedModeBanner: false,
-          routerConfig: AppRouter().config,
-          theme: lightTheme,
-          darkTheme: darkTheme,
-          themeMode: ThemeMode.system,
+      child: MultiProvider(
+        providers: [
+          ChangeNotifierProvider(
+            create: (context) => QuizProvider(),
+          ),
+        ],
+        child: StoreProvider(
+          store: store,
+          child: MaterialApp.router(
+            debugShowCheckedModeBanner: false,
+            routerConfig: AppRouter().config,
+            theme: lightTheme,
+            darkTheme: darkTheme,
+            themeMode: ThemeMode.system,
+          ),
         ),
       ),
     );

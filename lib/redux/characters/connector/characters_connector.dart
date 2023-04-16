@@ -23,6 +23,8 @@ class CharactersConnector extends StatelessWidget {
       converter: (store) {
         return CharactersViewModel(
           isLoading: store.state.dataStatus == DataStatus.inProgress,
+          errorMessage: store.state.errorMessage,
+          onReset: () => store.dispatch(CharactersPrepareDataAction()),
           characters: _mapToCharacterProps(store),
           bottomNavigationBarProps: _mapToBarProps(store),
         );

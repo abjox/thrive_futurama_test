@@ -38,7 +38,6 @@ class CharacterDetailsBodyWidget extends StatelessWidget {
         children: [
           CachedNetworkImage(
             imageUrl: props.imageUrl,
-            placeholder: (context, url) => const CircularProgressIndicator(),
             errorWidget: (context, url, error) => const Icon(Icons.error),
             width: 120,
             height: 120,

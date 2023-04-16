@@ -1,3 +1,4 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:logger/logger.dart';
 import 'package:redux/redux.dart';
 
@@ -20,6 +21,11 @@ class NetworkMiddleware extends MiddlewareClass<AppState> {
   @override
   void call(Store<AppState> store, action, next) async {
     next(action);
+    final available = await _isNetworkAvailable();
+    if (!available) {
+      store.dispatch(ErrorOccurredAction('No internet connection!'));
+      return;
+    }
     switch (action.runtimeType) {
       case HomePrepareDataAction:
         store.dispatch(ChangeDataStatusAction(DataStatus.inProgress));
@@ -28,11 +34,12 @@ class NetworkMiddleware extends MiddlewareClass<AppState> {
           _logger.d(infoList);
           if (infoList.isNotEmpty) {
             store.dispatch(HomeDataReadyAction(infoList.first));
-            store.dispatch(ChangeDataStatusAction(DataStatus.success));
           }
-        } catch (error) {
-          _logger.e(error);
-          store.dispatch(ChangeDataStatusAction(DataStatus.error));
+        } catch (error, stacktrace) {
+          _logger.e('CharactersPrepareDataAction:', error, stacktrace);
+          store.dispatch(
+            ErrorOccurredAction('Something went wrong! Please try Again.'),
+          );
         }
         break;
       case CharactersPrepareDataAction:
@@ -42,11 +49,12 @@ class NetworkMiddleware extends MiddlewareClass<AppState> {
           _logger.d(characters);
           if (characters.isNotEmpty) {
             store.dispatch(CharactersDataReadyAction(characters));
-            store.dispatch(ChangeDataStatusAction(DataStatus.success));
           }
         } catch (error, stacktrace) {
           _logger.e('CharactersPrepareDataAction:', error, stacktrace);
-          store.dispatch(ChangeDataStatusAction(DataStatus.error));
+          store.dispatch(
+            ErrorOccurredAction('Something went wrong! Please try Again.'),
+          );
         }
         break;
       case QuizPrepareDataAction:
@@ -56,15 +64,21 @@ class NetworkMiddleware extends MiddlewareClass<AppState> {
           _logger.d(questions);
           if (questions.isNotEmpty) {
             store.dispatch(QuizDataReadyAction(questions));
-            store.dispatch(ChangeDataStatusAction(DataStatus.success));
           }
-        } catch (error) {
-          _logger.e(error);
-          store.dispatch(ChangeDataStatusAction(DataStatus.error));
+        } catch (error, stacktrace) {
+          _logger.e('QuizPrepareDataAction:', error, stacktrace);
+          store.dispatch(
+            ErrorOccurredAction('Something went wrong! Please try Again.'),
+          );
         }
         break;
       default:
         break;
     }
+  }
+
+  Future<bool> _isNetworkAvailable() async {
+    final result = await Connectivity().checkConnectivity();
+    return result != ConnectivityResult.none;
   }
 }

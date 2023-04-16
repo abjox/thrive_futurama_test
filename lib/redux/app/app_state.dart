@@ -17,6 +17,7 @@ enum DataStatus {
 @immutable
 class AppState extends Equatable {
   final DataStatus dataStatus;
+  final String? errorMessage;
   final BottomBarItemTypes selectedItem;
   final HomeState homeState;
   final CharactersState charactersState;
@@ -25,6 +26,7 @@ class AppState extends Equatable {
 
   const AppState({
     required this.dataStatus,
+    required this.errorMessage,
     required this.selectedItem,
     required this.homeState,
     required this.charactersState,
@@ -35,6 +37,7 @@ class AppState extends Equatable {
   factory AppState.initial() {
     return AppState(
       dataStatus: DataStatus.initial,
+      errorMessage: null,
       selectedItem: BottomBarItemTypes.home,
       homeState: HomeState.initial(),
       charactersState: CharactersState.initial(),
@@ -45,6 +48,7 @@ class AppState extends Equatable {
 
   AppState copyWith({
     DataStatus? dataStatus,
+    String? errorMessage,
     BottomBarItemTypes? selectedItem,
     HomeState? homeState,
     CharactersState? charactersState,
@@ -53,6 +57,7 @@ class AppState extends Equatable {
   }) {
     return AppState(
       dataStatus: dataStatus ?? this.dataStatus,
+      errorMessage: errorMessage ?? this.errorMessage,
       selectedItem: selectedItem ?? this.selectedItem,
       homeState: homeState ?? this.homeState,
       charactersState: charactersState ?? this.charactersState,
@@ -63,8 +68,9 @@ class AppState extends Equatable {
   }
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         dataStatus,
+        errorMessage,
         selectedItem,
         homeState,
         charactersState,
