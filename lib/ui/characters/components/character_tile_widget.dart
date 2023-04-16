@@ -21,13 +21,17 @@ class CharacterTileWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: CachedNetworkImage(
-        imageUrl: props.image,
-        placeholder: (context, url) => const CircularProgressIndicator(),
-        errorWidget: (context, url, error) => const Icon(Icons.error),
+      leading: ExcludeSemantics(
+        child: CachedNetworkImage(
+          imageUrl: props.image,
+          placeholder: (context, url) => const CircularProgressIndicator(),
+          errorWidget: (context, url, error) => const Icon(Icons.error),
+        ),
       ),
-      title: Text(props.firstName),
-      subtitle: Text(props.lastName),
+      title: Semantics(
+        label: '${props.lastName} ${props.lastName}',
+        child: Text('${props.lastName} ${props.lastName}'),
+      ),
       onTap: props.onPressed,
     );
   }

@@ -20,7 +20,10 @@ class CharactersScreen extends StatelessWidget {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        title: const Text('Characters'),
+        title: Semantics(
+          label: 'Characters',
+          child: const Text('Characters'),
+        ),
       ),
       body: Builder(
         builder: (ontext) {
@@ -38,8 +41,11 @@ class CharactersScreen extends StatelessWidget {
           return ListView.builder(
             itemCount: viewModel.characters.length,
             itemBuilder: (context, index) {
-              return CharacterTileWidget(
-                props: viewModel.characters[index],
+              return Semantics(
+                label: 'Item $index',
+                child: CharacterTileWidget(
+                  props: viewModel.characters[index],
+                ),
               );
             },
           );

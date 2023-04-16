@@ -27,17 +27,26 @@ class BottomNavigationBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      items: const [
+      items: [
         BottomNavigationBarItem(
-          icon: Icon(Icons.home),
+          icon: Semantics(
+            label: 'Home',
+            child: const Icon(Icons.home),
+          ),
           label: 'Home',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.people),
+          icon: Semantics(
+            label: 'Characters',
+            child: const Icon(Icons.people),
+          ),
           label: 'Characters',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.quiz),
+          icon: Semantics(
+            label: 'Quiz',
+            child: const Icon(Icons.quiz),
+          ),
           label: 'Quiz',
         ),
       ],

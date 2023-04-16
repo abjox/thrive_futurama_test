@@ -18,7 +18,10 @@ class CharacterDetailsScreen extends StatelessWidget {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        title: Text(viewModel.firstName),
+        title: Semantics(
+          label: viewModel.firstName,
+          child: Text(viewModel.firstName),
+        ),
       ),
       body: CharacterDetailsBodyWidget(viewModel.characterDetailsBodyProps),
     );

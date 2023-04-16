@@ -22,7 +22,10 @@ class QuizScreen extends StatelessWidget {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        title: const Text('Quiz'),
+        title: Semantics(
+          label: 'Quiz',
+          child: const Text('Quiz'),
+        ),
       ),
       body: Consumer<QuizProvider>(builder: (context, provider, child) {
         return Builder(builder: (context) {

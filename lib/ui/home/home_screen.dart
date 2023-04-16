@@ -20,7 +20,10 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        title: const Text('Home'),
+        title: Semantics(
+          label: 'Home',
+          child: const Text('Home'),
+        ),
       ),
       body: Builder(builder: (context) {
         if (viewModel.isLoading) {

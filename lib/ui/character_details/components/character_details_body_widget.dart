@@ -43,33 +43,46 @@ class CharacterDetailsBodyWidget extends StatelessWidget {
             height: 120,
           ),
           const SizedBox(height: 16.0),
-          Text.rich(
-            TextSpan(children: [
-              TextSpan(text: props.firstName),
-              const TextSpan(text: ' '),
-              if (props.middleName.isNotEmpty) TextSpan(text: props.middleName),
-              if (props.middleName.isNotEmpty) const TextSpan(text: ' '),
-              TextSpan(text: props.lastName),
-            ]),
-            style: Theme.of(context).textTheme.displayLarge,
+          Semantics(
+            label: '${props.firstName} ${props.middleName} ${props.lastName}',
+            child: Text.rich(
+              TextSpan(children: [
+                TextSpan(text: props.firstName),
+                const TextSpan(text: ' '),
+                if (props.middleName.isNotEmpty)
+                  TextSpan(text: props.middleName),
+                if (props.middleName.isNotEmpty) const TextSpan(text: ' '),
+                TextSpan(text: props.lastName),
+              ]),
+              style: Theme.of(context).textTheme.displayLarge,
+            ),
           ),
-          Text(
-            props.occupation,
-            style: Theme.of(context).textTheme.bodyMedium,
+          Semantics(
+            label: props.occupation,
+            child: Text(
+              props.occupation,
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
           ),
           const SizedBox(height: 16.0),
-          Text(
-            'Biography',
-            style: Theme.of(context).textTheme.displayMedium,
+          Semantics(
+            label: 'Biography',
+            child: Text(
+              'Biography',
+              style: Theme.of(context).textTheme.displayMedium,
+            ),
           ),
           const SizedBox(height: 8.0),
           _DetailRowWidget('Gender', props.gender),
           _DetailRowWidget('Species', props.species),
           _DetailRowWidget('Home Planet', props.homePlanet),
           const SizedBox(height: 16.0),
-          Text(
-            'Sayings',
-            style: Theme.of(context).textTheme.displayMedium,
+          Semantics(
+            label: 'Sayings',
+            child: Text(
+              'Sayings',
+              style: Theme.of(context).textTheme.displayMedium,
+            ),
           ),
           const SizedBox(height: 8.0),
           ListView.builder(
@@ -79,9 +92,12 @@ class CharacterDetailsBodyWidget extends StatelessWidget {
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 4.0),
-                child: Text(
-                  '- ${props.sayings[index]}',
-                  style: Theme.of(context).textTheme.bodyLarge,
+                child: Semantics(
+                  label: 'Item: $index. ${props.sayings[index]}',
+                  child: Text(
+                    '- ${props.sayings[index]}',
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
                 ),
               );
             },
@@ -105,15 +121,21 @@ class _DetailRowWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(
-          '$label: ',
-          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
+        Semantics(
+          label: '$label: ',
+          child: Text(
+            '$label: ',
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+          ),
         ),
-        Text(
-          value,
-          style: Theme.of(context).textTheme.bodyMedium,
+        Semantics(
+          label: value,
+          child: Text(
+            value,
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
         ),
       ],
     );

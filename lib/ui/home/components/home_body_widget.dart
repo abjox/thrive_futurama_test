@@ -24,37 +24,55 @@ class HomeBodyWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Synopsis',
-            style: Theme.of(context).textTheme.displayMedium,
+          Semantics(
+            label: 'Synopsis',
+            child: Text(
+              'Synopsis',
+              style: Theme.of(context).textTheme.displayMedium,
+            ),
           ),
           const SizedBox(height: 8),
-          Text(
-            props.synopsis,
-            style: Theme.of(context).textTheme.bodyLarge,
+          Semantics(
+            label: props.synopsis,
+            child: Text(
+              props.synopsis,
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
           ),
           const SizedBox(height: 16),
-          Text(
-            'Years Aired',
-            style: Theme.of(context).textTheme.displayMedium,
+          Semantics(
+            label: 'Years Aired',
+            child: Text(
+              'Years Aired',
+              style: Theme.of(context).textTheme.displayMedium,
+            ),
           ),
           const SizedBox(height: 8),
-          Text(
-            props.yearsAired,
-            style: Theme.of(context).textTheme.bodyMedium,
+          Semantics(
+            label: props.yearsAired,
+            child: Text(
+              props.yearsAired,
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
           ),
           const SizedBox(height: 16),
-          Text(
-            'Creators',
-            style: Theme.of(context).textTheme.displayMedium,
+          Semantics(
+            label: 'Creators',
+            child: Text(
+              'Creators',
+              style: Theme.of(context).textTheme.displayMedium,
+            ),
           ),
           const SizedBox(height: 8),
           ...List<Widget>.generate(
             props.creators.length,
             (index) {
-              return Text(
-                props.creators[index],
-                style: Theme.of(context).textTheme.bodyMedium,
+              return Semantics(
+                label: props.creators[index],
+                child: Text(
+                  props.creators[index],
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
               );
             },
           ),

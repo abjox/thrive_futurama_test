@@ -82,13 +82,21 @@ class _QuizBodyWidgetState extends State<QuizBodyWidget> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    'Question ${provider.currentQuestionIndex + 1} of ${provider.numberOfQuestions}',
-                    style: const TextStyle(fontSize: 16),
+                  Semantics(
+                    label:
+                        'Question ${provider.currentQuestionIndex + 1} of ${provider.numberOfQuestions}',
+                    child: Text(
+                      'Question ${provider.currentQuestionIndex + 1} of ${provider.numberOfQuestions}',
+                      style: const TextStyle(fontSize: 16),
+                    ),
                   ),
-                  Text(
-                    'Score: ${provider.score}/${provider.numberOfQuestions}',
-                    style: const TextStyle(fontSize: 16),
+                  Semantics(
+                    label:
+                        'Score: ${provider.score}/${provider.numberOfQuestions}',
+                    child: Text(
+                      'Score: ${provider.score}/${provider.numberOfQuestions}',
+                      style: const TextStyle(fontSize: 16),
+                    ),
                   ),
                 ],
               ),

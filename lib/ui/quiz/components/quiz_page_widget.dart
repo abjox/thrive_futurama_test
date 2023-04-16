@@ -33,11 +33,14 @@ class QuizPageWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(
-              question,
-              style: const TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
+            Semantics(
+              label: question,
+              child: Text(
+                question,
+                style: const TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             const SizedBox(height: 32),

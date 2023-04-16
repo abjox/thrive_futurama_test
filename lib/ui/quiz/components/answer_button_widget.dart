@@ -14,16 +14,25 @@ class AnswerButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: isSelected ? Colors.blue : null,
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Text(
-          answerText,
-          style: const TextStyle(fontSize: 16),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 2),
+      child: Semantics(
+        button: true,
+        label: answerText,
+        child: ElevatedButton(
+          onPressed: onPressed,
+          style: ElevatedButton.styleFrom(
+            backgroundColor:
+                isSelected ? Theme.of(context).colorScheme.secondary : null,
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              answerText,
+              style: const TextStyle(fontSize: 16),
+              textAlign: TextAlign.center,
+            ),
+          ),
         ),
       ),
     );
