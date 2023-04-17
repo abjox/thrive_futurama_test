@@ -1,16 +1,30 @@
-# thrive_futurama
+# Project Name: Thrive Futurama Test
 
-A new Flutter project.
+This is a Flutter mobile application developed as code challenge for Thrive.
 
-## Getting Started
+## Flutter Requirements
 
-This project is a starting point for a Flutter application.
+- Flutter: >=2.19.6 <3.0.0
+- Android: >= Android 7 (API 24)
+- iOS: >= 11.0
 
-A few resources to get you started if this is your first Flutter project:
+### How to build the app
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+1. Clone or download the project from the [GitHub](https://github.com/abjox/thrive_futurama_test.git).
+2. Open the terminal or command prompt and navigate to the project directory.
+3. Run the command `flutter pub get` to install the dependencies.
+4. For iOS run command `flutter run ios -t lib/main_production.dart -d <your-device-id> --debug`.
+5. For Android run command `flutter run -t lib/main_production.dart -d <your-device-id> --debug`.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### App Architecture
+
+- For the majority of its functionality, the app adheres to *Redux* state management principles.
+- The Quiz section of the app utilizes *ChangeNotifier* in conjunction with *Redux*, which serves as a demonstration of how the logic and layout code can be separated according to the requirements.
+
+### Features
+- Supports light/dark mode.
+- Works in either screen orientation and handles screen rotation.
+- Supports both phone and tablet screen sizes.
+- Supports screen reader through Semantics.
+
+

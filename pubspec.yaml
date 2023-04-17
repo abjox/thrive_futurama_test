@@ -1,5 +1,5 @@
 name: thrive_futurama
-description: A new Flutter project.
+description: This is a Flutter mobile application developed as code challenge for Thrive.
 publish_to: 'none' 
 
 version: 1.0.0+1
@@ -28,7 +28,6 @@ dependencies:
   go_router: ^6.5.6
 
   # UI
-  responsive_builder: ^0.6.4
   cached_network_image: ^3.2.3
 
   # Utils

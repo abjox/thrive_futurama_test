@@ -4,6 +4,5 @@ void main() async {
   await AppConfiguration(
     environment: AppEnvironment.production,
     backendURL: 'https://api.sampleapis.com/futurama',
-    logsEnabled: false,
   ).run();
 }
