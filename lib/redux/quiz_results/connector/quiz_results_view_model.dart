@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 class QuizResultsViewModel {
-  final VoidCallback onClose;
+  final VoidCallback onRestart;
+  final VoidCallback onBack;
 
   QuizResultsViewModel({
-    required this.onClose,
+    required this.onRestart,
+    required this.onBack,
   });
 }

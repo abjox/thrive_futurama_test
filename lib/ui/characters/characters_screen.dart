@@ -16,7 +16,6 @@ class CharactersScreen extends StatelessWidget {
     this.scaffoldKey, {
     Key? key,
   }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,6 +46,7 @@ class CharactersScreen extends StatelessWidget {
               return completer.future;
             },
             child: ListView.builder(
+              key: const PageStorageKey<String>('charactersScreen'),
               itemCount: viewModel.characters.length,
               itemBuilder: (context, index) {
                 return Semantics(

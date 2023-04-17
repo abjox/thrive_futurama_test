@@ -18,10 +18,11 @@ class QuizResultsConnector extends StatelessWidget {
       distinct: true,
       converter: (store) {
         return QuizResultsViewModel(
-          onClose: () {
+          onRestart: () {
             store.dispatch(QuizPrepareDataAction());
-            store.dispatch(QuizResultsCloseAction());
+            store.dispatch(QuizResultsRestartAction());
           },
+          onBack: () => store.dispatch(QuizResultsBackAction()),
         );
       },
       builder: (context, viewModel) => QuizResultsScreen(

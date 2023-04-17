@@ -1,7 +1,9 @@
+import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:redux/redux.dart';
 
 import '../../../core/app_router.dart';
+import '../../quiz_results/quiz_results_actions.dart';
 import '../app_actions.dart';
 import '../app_state.dart';
 
@@ -20,6 +22,10 @@ class NavigationMiddleware extends MiddlewareClass<AppState> {
 
     if (action is NavigateReplaceAction) {
       navigatorKey.currentContext?.pushReplacementNamed(action.route.name);
+    }
+
+    if (action is QuizResultsBackAction) {
+      SystemNavigator.pop();
     }
   }
 }

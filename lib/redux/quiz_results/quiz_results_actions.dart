@@ -1,3 +1,5 @@
 import '../app/app_actions.dart';
 
-class QuizResultsCloseAction implements NavigatePopAction {}
+class QuizResultsRestartAction implements NavigatePopAction {}
+
+class QuizResultsBackAction {}
