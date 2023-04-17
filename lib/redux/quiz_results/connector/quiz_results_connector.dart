@@ -3,6 +3,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 
 import '../../../ui/quiz_results/quiz_results_screen.dart';
 import '../../app/app_state.dart';
+import '../../quiz/quiz_actions.dart';
 import '../quiz_results_actions.dart';
 import 'quiz_results_view_model.dart';
 
@@ -17,7 +18,10 @@ class QuizResultsConnector extends StatelessWidget {
       distinct: true,
       converter: (store) {
         return QuizResultsViewModel(
-          onClose: () => store.dispatch(QuizResultsCloseAction()),
+          onClose: () {
+            store.dispatch(QuizPrepareDataAction());
+            store.dispatch(QuizResultsCloseAction());
+          },
         );
       },
       builder: (context, viewModel) => QuizResultsScreen(

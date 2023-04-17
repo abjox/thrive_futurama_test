@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import '../../redux/characters/connector/characters_view_model.dart';
@@ -38,16 +40,23 @@ class CharactersScreen extends StatelessWidget {
             );
           }
 
-          return ListView.builder(
-            itemCount: viewModel.characters.length,
-            itemBuilder: (context, index) {
-              return Semantics(
-                label: 'Item $index',
-                child: CharacterTileWidget(
-                  props: viewModel.characters[index],
-                ),
-              );
+          return RefreshIndicator(
+            onRefresh: () {
+              final completer = Completer();
+              viewModel.onRefresh(completer);
+              return completer.future;
             },
+            child: ListView.builder(
+              itemCount: viewModel.characters.length,
+              itemBuilder: (context, index) {
+                return Semantics(
+                  label: 'Item $index',
+                  child: CharacterTileWidget(
+                    props: viewModel.characters[index],
+                  ),
+                );
+              },
+            ),
           );
         },
       ),

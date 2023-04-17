@@ -3,6 +3,8 @@ import '../../core/network/model/question.dart';
 import '../app/app_actions.dart';
 import '../app/app_state.dart';
 
+class QuizOpenAction {}
+
 class QuizPrepareDataAction {}
 
 class QuizDataReadyAction extends ClearErrorAction

@@ -77,28 +77,31 @@ class _QuizBodyWidgetState extends State<QuizBodyWidget> {
                 },
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Semantics(
-                    label:
+            Visibility(
+              visible: provider.numberOfQuestions > 0,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Semantics(
+                      label:
+                          'Question ${provider.currentQuestionIndex + 1} of ${provider.numberOfQuestions}',
+                      child: Text(
                         'Question ${provider.currentQuestionIndex + 1} of ${provider.numberOfQuestions}',
-                    child: Text(
-                      'Question ${provider.currentQuestionIndex + 1} of ${provider.numberOfQuestions}',
-                      style: const TextStyle(fontSize: 16),
+                        style: const TextStyle(fontSize: 16),
+                      ),
                     ),
-                  ),
-                  Semantics(
-                    label:
+                    Semantics(
+                      label:
+                          'Score: ${provider.score}/${provider.numberOfQuestions}',
+                      child: Text(
                         'Score: ${provider.score}/${provider.numberOfQuestions}',
-                    child: Text(
-                      'Score: ${provider.score}/${provider.numberOfQuestions}',
-                      style: const TextStyle(fontSize: 16),
+                        style: const TextStyle(fontSize: 16),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ],

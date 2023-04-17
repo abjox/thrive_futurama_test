@@ -19,7 +19,14 @@ class HomeConnector extends StatelessWidget {
   Widget build(BuildContext context) {
     return StoreConnector<AppState, HomeViewModel>(
       distinct: true,
-      onInit: (store) => store.dispatch(HomePrepareDataAction()),
+      onInit: (store) {
+        final homeState = store.state.homeState;
+        if (homeState.info != null) {
+          store.dispatch(HomeOpenAction());
+          return;
+        }
+        store.dispatch(HomePrepareDataAction());
+      },
       converter: (store) {
         final dataStatus = store.state.dataStatus;
         return HomeViewModel(
@@ -44,6 +51,7 @@ class HomeConnector extends StatelessWidget {
       infoModel?.synopsis ?? '',
       infoModel?.yearsAired ?? '',
       infoModel?.creators.map((e) => e.name).toList() ?? [],
+      (completer) => store.dispatch(HomeRefreshDataAction(completer)),
     );
   }
 

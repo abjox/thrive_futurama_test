@@ -1,9 +1,19 @@
+import 'dart:async';
+
 import '../../core/app_router.dart';
 import '../../core/network/model/character.dart';
 import '../app/app_actions.dart';
 import '../app/app_state.dart';
 
+class CharactersOpenAction {}
+
 class CharactersPrepareDataAction {}
+
+class CharactersRefreshDataAction {
+  final Completer completer;
+
+  CharactersRefreshDataAction(this.completer);
+}
 
 class CharactersDataReadyAction extends ClearErrorAction
     implements ChangeDataStatusAction {

@@ -42,7 +42,23 @@ class NetworkMiddleware extends MiddlewareClass<AppState> {
             store.dispatch(HomeDataReadyAction(infoList.first));
           }
         } catch (error, stacktrace) {
-          _logger.e('CharactersPrepareDataAction:', error, stacktrace);
+          _logger.e('HomePrepareDataAction:', error, stacktrace);
+          store.dispatch(
+            ErrorOccurredAction('Something went wrong! Please try Again.'),
+          );
+        }
+        break;
+      case HomeRefreshDataAction:
+        try {
+          final infoList = await _networkService.info();
+          _logger.d(infoList);
+          if (infoList.isNotEmpty) {
+            store.dispatch(HomeDataReadyAction(infoList.first));
+          }
+          (action as HomeRefreshDataAction).completer.complete();
+        } catch (error, stacktrace) {
+          _logger.e('HomePrepareDataAction:', error, stacktrace);
+          (action as HomeRefreshDataAction).completer.complete();
           store.dispatch(
             ErrorOccurredAction('Something went wrong! Please try Again.'),
           );
@@ -58,6 +74,22 @@ class NetworkMiddleware extends MiddlewareClass<AppState> {
           }
         } catch (error, stacktrace) {
           _logger.e('CharactersPrepareDataAction:', error, stacktrace);
+          store.dispatch(
+            ErrorOccurredAction('Something went wrong! Please try Again.'),
+          );
+        }
+        break;
+      case CharactersRefreshDataAction:
+        try {
+          final characters = await _networkService.characters();
+          _logger.d(characters);
+          if (characters.isNotEmpty) {
+            store.dispatch(CharactersDataReadyAction(characters));
+          }
+          (action as CharactersRefreshDataAction).completer.complete();
+        } catch (error, stacktrace) {
+          _logger.e('CharactersPrepareDataAction:', error, stacktrace);
+          (action as CharactersRefreshDataAction).completer.complete();
           store.dispatch(
             ErrorOccurredAction('Something went wrong! Please try Again.'),
           );

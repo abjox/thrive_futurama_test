@@ -19,12 +19,22 @@ class CharactersConnector extends StatelessWidget {
   Widget build(BuildContext context) {
     return StoreConnector<AppState, CharactersViewModel>(
       distinct: true,
-      onInit: (store) => store.dispatch(CharactersPrepareDataAction()),
+      onInit: (store) {
+        final charactersState = store.state.charactersState;
+        if (charactersState.characters.isNotEmpty) {
+          store.dispatch(CharactersOpenAction());
+          return;
+        }
+        store.dispatch(CharactersPrepareDataAction());
+      },
       converter: (store) {
         return CharactersViewModel(
           isLoading: store.state.dataStatus == DataStatus.inProgress,
           errorMessage: store.state.errorMessage,
           onReset: () => store.dispatch(CharactersPrepareDataAction()),
+          onRefresh: (completer) => store.dispatch(
+            CharactersRefreshDataAction(completer),
+          ),
           characters: _mapToCharacterProps(store),
           bottomNavigationBarProps: _mapToBarProps(store),
         );

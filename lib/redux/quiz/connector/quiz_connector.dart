@@ -20,7 +20,14 @@ class QuizConnector extends StatelessWidget {
   Widget build(BuildContext context) {
     return StoreConnector<AppState, QuizViewModel>(
       distinct: true,
-      onInit: (store) => store.dispatch(QuizPrepareDataAction()),
+      onInit: (store) {
+        final quizState = store.state.quizState;
+        if (quizState.questions.isNotEmpty) {
+          store.dispatch(QuizOpenAction());
+          return;
+        }
+        store.dispatch(QuizPrepareDataAction());
+      },
       converter: (store) {
         Provider.of<QuizProvider>(context, listen: false).setup(
           store.state.quizState.questions,
